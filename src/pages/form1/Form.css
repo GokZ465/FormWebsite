@@ -1,0 +1,165 @@
+/* First CSS code for the transactions section */
+
+.container {
+  display: grid;
+  grid-template-columns: 4fr;
+  max-width: 70vw;
+  margin: 60px auto;
+}
+
+.sidebar form {
+  padding: 20px;
+  background: #1f9751;
+  border-radius: 10px;
+}
+.sidebar input,
+.sidebar select {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 4px;
+  color: #555;
+  font-size: 1em;
+}
+.sidebar label {
+  margin: 0 auto 20px;
+  display: block;
+  color: #fff;
+}
+.sidebar button {
+  color: #fff;
+  border: 2px solid #fff;
+  padding: 6px 12px;
+  background-color: transparent;
+  font-size: 1em;
+  border-radius: 4px;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+}
+.sidebar h3 {
+  color: #1f9751;
+  margin-bottom: 20px;
+}
+.sidebar aside {
+  margin-top: 40px;
+  color: #555;
+}
+.sidebar aside li {
+  margin: 10px;
+}
+
+/* transactions */
+.transactions li {
+  margin: 30px auto;
+  border: 1px solid #f2f2f2;
+  box-shadow: 3px 3px 5px rgba(50, 50, 50, 0.1);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border-left: 4px solid #1f9751;
+}
+.transactions .name {
+  color: #777;
+  font-size: 1.4em;
+}
+.transactions .amount {
+  margin-left: auto;
+  margin-right: 40px;
+  color: #777;
+  font-weight: bold;
+  font-size: 1.6em;
+}
+.transactions button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #ddd;
+  color: #777;
+  border: none;
+  padding: 12px 8px;
+  text-align: center;
+  line-height: 0;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+/* Second CSS code for the form section */
+
+/* Styling the Body element i.e. Color,
+  Font, Alignment */
+body {
+  background-color: #ffffff;
+  font-family: Verdana;
+  text-align: center;
+}
+
+/* Styling the Form (Color, Padding, Shadow) */
+form {
+  background-color: #fff;
+  max-width: 40rem;
+  width: 40rem;
+  margin: 10px auto;
+  padding: 20px 10px;
+  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Styling form
+form {
+background-color: #fff;
+max-width: 500px;
+margin: 50px auto;
+padding: 30px 20px;
+box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Styling form-control Class */
+.form-control {
+  text-align: left;
+  margin-bottom: 25px;
+}
+
+/* Styling form-control Label */
+.form-control label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Styling form-control input,
+    select, textarea */
+.form-control input,
+.form-control select,
+.form-control textarea {
+  border: 1px solid #777;
+  border-radius: 2px;
+  font-family: inherit;
+  padding: 10px;
+  display: block;
+  width: 95%;
+}
+
+/* Styling form-control Radio
+    button and Checkbox */
+.form-control input[type="radio"],
+.form-control input[type="checkbox"] {
+  display: inline-block;
+  width: auto;
+}
+
+/* Styling Button */
+button {
+  background-color: #5c79ff;
+  border: 1px solid #777;
+  border-radius: 2px;
+  font-family: inherit;
+  font-size: 21px;
+  display: block;
+  width: 100%;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
