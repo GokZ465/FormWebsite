@@ -36,7 +36,7 @@ export default function Pending() {
 
   return (
     <div className="pending-page">
-      <h2 className="page-title">Pending Loans</h2>
+      {/* <h2 className="page-title">Pending Loans</h2> */}
       {error && <p className="error">{error}</p>}
 
       {projects && <ProjectList projects={projects} />}
