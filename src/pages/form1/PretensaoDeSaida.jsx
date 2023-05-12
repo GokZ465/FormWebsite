@@ -4,12 +4,13 @@ import { useFirestore } from "../../hooks/useFirestore";
 import Select from "react-select";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useCollection } from "../../hooks/useCollection";
+import { useNavigate } from "react-router-dom";
+import { fireStore } from "../../fireBaeDateBae/config";
 function Form() {
-  
   const { user } = useAuthContext();
   const { documents } = useCollection("users");
   const [users, setUsers] = useState([]);
-
+  const navigate = useNavigate();
   const [companhiaDeAlunos, setCompanhiaDeAlunos] = useState("3");
   const [numero, setNumero] = useState("");
   const [nome, setNome] = useState("");
@@ -18,6 +19,8 @@ function Form() {
   const [desde, setDesde] = useState("");
   const [ate, setAte] = useState("");
   const [role, setRole] = useState("");
+  const [form1, setForm1] = useState();
+  const [form2, setForm2] = useState();
   const [startDate, setStartDate] = useState(
     new Date().toISOString().substring(0, 10)
   );
@@ -27,6 +30,7 @@ function Form() {
   const [recommed, setRecommed] = useState("");
   const [meetingTime, setMeetingTime] = useState("2022-12-13T08:00");
   const { addDocument } = useFirestore("transactions");
+  const [isDisabled, setIsDisabled] = useState(false);
   const [comment, setComment] = useState("");
 
   const handleCompanhiaDeAlunosChange = (event) => {
@@ -44,7 +48,54 @@ function Form() {
     if (documents) {
       setUsers("admin");
     }
+    // fireStore
+    //   .collection("users")
+    //   .doc(user.uid)
+    //   .where("form1", "==", "rejected")
+    //   .get()
+    //   .then((doc) => {
+    //     if (doc.exists) {
+    //       setForm1(true);
+    //     }
+    //   });
+    fireStore
+      .collection("users")
+      .doc(user.uid)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          const data = doc.data();
+          if (data.form1 === "rejected") {
+            isDisabled(true);
+
+            setForm1(false);
+          }
+          if (data.form1 === "Accepted") {
+            isDisabled(true);
+
+            setForm1(true);
+          }
+          if (data.form2 === "Accepted") {
+            isDisabled(true);
+
+            setForm2(true);
+          }
+          if (data.form2 === "rejected") {
+            isDisabled(true);
+
+            setForm2(false);
+          }
+        } else {
+          console.log("No such document!");
+        }
+        console.log(form1, form2);
+      })
+      .catch((error) => {
+        console.log("Error getting document:", error);
+      });
+    console.log(form1, form2);
   }, [documents]);
+
   const handleAnoDeEscolaridadeChange = (event) => {
     setAnoDeEscolaridade(event.target.value);
   };
@@ -112,12 +163,47 @@ function Form() {
       meetingTime,
       comment,
       createdBy,
+      form: "PretensaoDeSaida",
     });
+    navigate("/");
+
     // Submit form data to server or do something else
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}  style={{ display: isDisabled ? 'none' : 'block' }}>
+      {console.log(user)}
+      {!form1 && (
+        <div
+          style={{
+            backgroundColor: "red",
+            color: "white",
+            padding: "10px",
+            borderRadius: "5px",
+            fontWeight: "bold",
+            textAlign: "center",
+            height: "100px",
+          }}
+        >
+          Your Request is Rejected by Admin
+        </div>
+      )}
+      {form1 && (
+        <div
+          style={{
+            backgroundColor: "green",
+            color: "white",
+            padding: "10px",
+            borderRadius: "5px",
+            fontWeight: "bold",
+            textAlign: "center",
+            height: "100px",
+          }}
+        >
+          Your Request is Accepted by Admin
+        </div>
+      )}
+
       <div className="form-control">
         <h1>Pretensão de Saída</h1>
         <label htmlFor="companhiaDeAlunos" id="label-companhiaDeAlunos">
@@ -135,7 +221,6 @@ function Form() {
           <option value="4">4º</option>
         </select>
       </div>
-
       <div className="form-control">
         <label htmlFor="numero" id="label-numero">
           Número
@@ -151,7 +236,6 @@ function Form() {
           onChange={handleNumeroChange}
         />
       </div>
-
       {/* Details */}
       <div className="form-control">
         <label htmlFor="nome" id="label-nome">
@@ -168,7 +252,6 @@ function Form() {
           onChange={handleNomeChange}
         />
       </div>
-
       <div className="form-control">
         <label htmlFor="anoDeEscolaridade" id="label-anoDeEscolaridade">
           Ano de Escolaridade
@@ -202,7 +285,6 @@ function Form() {
           <option value="e">E</option>
         </select>
       </div>
-
       <div className="form-control">
         <label htmlFor="startDate">
           Pretende ser dispensado no dia: <br /> Desde as:
@@ -217,7 +299,6 @@ function Form() {
           max="2023-12-31T23:59"
         />
       </div>
-
       <div className="form-control">
         <label htmlFor="endDate">
           Até ao dia: <br /> Às:
@@ -232,7 +313,6 @@ function Form() {
           max="2023-12-31T23:59"
         />
       </div>
-
       <div>
         <div className="form-control">
           <label>

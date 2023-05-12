@@ -17,6 +17,7 @@ import Success from "./pages/payment/Success";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Pending from "./pages/pending/Pending";
 import Form from "./pages/form1/PretensaoDeSaida";
+import Form2 from "./pages/form2/Form2";
 
 function App() {
   const { authIsReady, user } = useAuthContext();
@@ -38,22 +39,18 @@ function App() {
                 }
               ></Route>
               <Route path="/signup" element={!user && <Signup />}></Route>
-             
-              <Route
-                path="/request"
-                element={user ? <Form /> : <Login />}
-              ></Route>
+
+              <Route path="/form" element={user ? <Form /> : <Login />}></Route>
               <Route
                 path="/pending"
                 element={user ? <Pending /> : <Login />}
               ></Route>
               <Route
-                path="/dashboard"
-                element={user ? <Dashboard /> : <Login />}
+                path="/form2"
+                element={user ? <Form2 /> : <Login />}
               ></Route>
               <Route path="/success" element={<Success />}></Route>
               <Route path="/loans/:id" element={<Project />}></Route>
-              
             </Routes>
           </div>
           {user && <OnlineUsers />}

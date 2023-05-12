@@ -3,6 +3,8 @@ import { useHistory, useNavigate } from "react-router-dom";
 import Avatar from "../../components/navbar/Avatar";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useFirestore } from "../../hooks/useFirestore";
+import { fireStore } from "../../fireBaeDateBae/config";
+// import { fireStore, timestamp } from "../../fireBaeDateBae/config";
 
 import React from "react";
 import { Link } from "react-router-dom";
@@ -17,16 +19,67 @@ const options = {
 };
 
 export default function ProjectList({ projects }) {
+  // const db = fireStore();
   const { deleteDocument } = useFirestore("transactions");
   const { user } = useAuthContext();
   let navigate = useNavigate();
 
-  const handleReject = (id) => {
+  const handleReject = (id, uid, form) => {
     deleteDocument(id);
+    console.log(uid);
+    fireStore
+      .collection("users")
+      .doc(uid)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          if (form === "PretensaoDeSaida") {
+            fireStore
+              .collection("users")
+              .doc(uid)
+              .update({ form2: "rejected" });
+          } else {
+            fireStore
+              .collection("users")
+              .doc(uid)
+              .update({ form1: "rejected" });
+          }
+        } else {
+          console.log("No matching documents found.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error updating document: ", error);
+      });
   };
 
-  const handleApprove = () => {
-    navigate("/");
+  const handleApprove = (id, uid, formType) => {
+    deleteDocument(id);
+    console.log(uid);
+    fireStore
+      .collection("users")
+      .doc(uid)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          if (formType === "PretensaoDeSaida") {
+            fireStore
+              .collection("users")
+              .doc(uid)
+              .update({ form2: "Accepted" });
+          } else {
+            fireStore
+              .collection("users")
+              .doc(uid)
+              .update({ form1: "Accepted" });
+          }
+        } else {
+          console.log("No matching documents found.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error updating document: ", error);
+      });
   };
 
   return (
@@ -57,20 +110,28 @@ export default function ProjectList({ projects }) {
               <p>Motivo : {project.comment}</p>
             </div>
           </p>
-          <div className="button-container">
-            <button onClick={handleApprove} className="accept-button">
-              Accept
-            </button>
-            <button
-              onClick={(e) => {
-                console.log(project.id);
-                handleReject(project.id);
-              }}
-              className="reject-button"
-            >
-              Reject
-            </button>
-          </div>
+          {user.uid === "a5fl9Hs1aBcEdnT6QZtPE0gAa4d2" && (
+            <div className="button-container">
+              <button
+                onClick={(e) => {
+                  console.log(project.createdBy.id);
+                  handleApprove(project.id, project.createdBy.id, project.form);
+                }}
+                className="accept-button"
+              >
+                Accept
+              </button>
+              <button
+                onClick={(e) => {
+                  console.log(project.createdBy.id);
+                  handleReject(project.id, project.createdBy.id, project.form);
+                }}
+                className="reject-button"
+              >
+                Reject
+              </button>
+            </div>
+          )}
         </div>
       ))}
     </div>

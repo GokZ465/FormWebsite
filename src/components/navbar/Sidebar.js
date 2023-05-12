@@ -19,36 +19,36 @@ export default function Sidebar() {
         <nav className="links">
           <ul>
             <li>
-              <NavLink exact to="/dashboard">
+              <NavLink exact to="/form2">
                 <img src={AddIcon} alt="add project icon" />
-                <span>Dashboard</span>
+                <span>Form1</span>
               </NavLink>
             </li>
-            <li>
-              <NavLink exact to="/profile">
+            {/* <li> */}
+            {/* <NavLink exact to="/profile">
                 <img src={DashboardIcon} alt="dashboard icon" />
                 <span>Profile</span>
                 {console.log("DashboardIcon sidebar is working")}
               </NavLink>
-            </li>
+            </li> */}
             <li>
-              <NavLink to="/request">
+              <NavLink to="/form">
                 <img src={AddIcon} alt="add project icon" />
-                <span>Request Loan</span>
+                <span>Form2</span>
               </NavLink>
             </li>
             <li>
               <NavLink to="/pending">
                 <img src={AddIcon} alt="add project icon" />
-                <span>Pending Loan</span>
+                <span>Admin</span>
               </NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink to="/pay">
                 <img src={AddIcon} alt="add project icon" />
                 <span>Pay</span>
               </NavLink>
-            </li>
+            </li> */}
           </ul>
         </nav>
       </div>
