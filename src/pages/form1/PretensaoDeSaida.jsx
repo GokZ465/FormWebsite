@@ -65,24 +65,17 @@ function Form() {
       .then((doc) => {
         if (doc.exists) {
           const data = doc.data();
+          console.log(data);
           if (data.form1 === "rejected") {
-            isDisabled(true);
-
             setForm1(false);
           }
           if (data.form1 === "Accepted") {
-            isDisabled(true);
-
             setForm1(true);
           }
           if (data.form2 === "Accepted") {
-            isDisabled(true);
-
             setForm2(true);
           }
           if (data.form2 === "rejected") {
-            isDisabled(true);
-
             setForm2(false);
           }
         } else {
@@ -171,9 +164,12 @@ function Form() {
   };
 
   return (
-    <form onSubmit={handleSubmit}  style={{ display: isDisabled ? 'none' : 'block' }}>
+    <form
+      onSubmit={handleSubmit}
+      style={{ display: isDisabled ? "none" : "block" }}
+    >
       {console.log(user)}
-      {!form1 && (
+      {form1===false && form1!==undefined &&  (
         <div
           style={{
             backgroundColor: "red",
@@ -188,7 +184,8 @@ function Form() {
           Your Request is Rejected by Admin
         </div>
       )}
-      {form1 && (
+      {console.log(form1, !form1 , form1!==undefined)}
+      {form1===true && form1!==undefined && (
         <div
           style={{
             backgroundColor: "green",
