@@ -2,6 +2,8 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import { useAuthContext } from "./hooks/useAuthContext";
 import "./App.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup";
@@ -56,6 +58,7 @@ function App() {
           {user && <OnlineUsers />}
         </BrowserRouter>
       )}
+      <ToastContainer />
     </div>
   );
 }

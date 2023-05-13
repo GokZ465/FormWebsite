@@ -5,7 +5,8 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 import { useCollection } from "../../hooks/useCollection";
 import { useNavigate } from "react-router-dom";
 import { fireStore } from "../../fireBaeDateBae/config";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function Form2() {
   const { user } = useAuthContext();
   const { documents } = useCollection("users");
@@ -110,7 +111,20 @@ export default function Form2() {
       createdBy,
       form: "PretensaoDePosseOuUso",
     });
-    navigate("/");
+    toast("Your form has been submitted to Admin", {
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      position: toast.POSITION.TOP_CENTER,
+    });
+    setTimeout(function () {
+      navigate("/");
+      window.location.reload();
+    }, 1200);
   };
 
   return (

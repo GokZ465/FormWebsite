@@ -6,6 +6,8 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 import { useCollection } from "../../hooks/useCollection";
 import { useNavigate } from "react-router-dom";
 import { fireStore } from "../../fireBaeDateBae/config";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 function Form() {
   const { user } = useAuthContext();
   const { documents } = useCollection("users");
@@ -27,6 +29,7 @@ function Form() {
   const [endDate, setEndDate] = useState(
     new Date().toISOString().substring(0, 10)
   );
+
   const [recommed, setRecommed] = useState("");
   const [meetingTime, setMeetingTime] = useState("2022-12-13T08:00");
   const { addDocument } = useFirestore("transactions");
@@ -158,7 +161,20 @@ function Form() {
       createdBy,
       form: "PretensaoDeSaida",
     });
-    navigate("/");
+    toast("Your form has been submitted to Admin", {
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      position: toast.POSITION.TOP_CENTER,
+    });
+    setTimeout(function () {
+      navigate("/");
+      window.location.reload();
+    }, 1200);
 
     // Submit form data to server or do something else
   };
@@ -169,7 +185,7 @@ function Form() {
       style={{ display: isDisabled ? "none" : "block" }}
     >
       {console.log(user)}
-      {form1===false && form1!==undefined &&  (
+      {form1 === false && form1 !== undefined && (
         <div
           style={{
             backgroundColor: "red",
@@ -184,8 +200,8 @@ function Form() {
           Your Request is Rejected by Admin
         </div>
       )}
-      {console.log(form1, !form1 , form1!==undefined)}
-      {form1===true && form1!==undefined && (
+      {console.log(form1, !form1, form1 !== undefined)}
+      {form1 === true && form1 !== undefined && (
         <div
           style={{
             backgroundColor: "green",
