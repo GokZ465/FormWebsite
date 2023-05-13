@@ -377,14 +377,6 @@ function Form() {
             onChange={handleCommentChange}
           />
         </label>
-        <label>
-          <span>Assign to:</span>
-          <Select
-            onChange={(option) => setAssignedUsers(option)}
-            options={users}
-            isMulti
-          />
-        </label>
       </div>
       <button type="submit">Enviar</button>
     </form>

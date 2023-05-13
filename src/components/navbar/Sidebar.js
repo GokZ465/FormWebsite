@@ -18,12 +18,12 @@ export default function Sidebar() {
         </div>
         <nav className="links">
           <ul>
-            <li>
-              <NavLink exact to="/form2">
+           
+              {user.uid !== "a5fl9Hs1aBcEdnT6QZtPE0gAa4d2" &&  <li> <NavLink exact to="/form2">
                 <img src={AddIcon} alt="add project icon" />
                 <span>Form1</span>
-              </NavLink>
-            </li>
+              </NavLink>  </li>}
+           
             {/* <li> */}
             {/* <NavLink exact to="/profile">
                 <img src={DashboardIcon} alt="dashboard icon" />
@@ -32,10 +32,10 @@ export default function Sidebar() {
               </NavLink>
             </li> */}
             <li>
-              <NavLink to="/form">
+             {user.uid !== "a5fl9Hs1aBcEdnT6QZtPE0gAa4d2" && <NavLink to="/form">
                 <img src={AddIcon} alt="add project icon" />
                 <span>Form2</span>
-              </NavLink>
+              </NavLink>}
             </li>
             <li>
               <NavLink to="/pending">
