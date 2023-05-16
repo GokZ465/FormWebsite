@@ -19,13 +19,16 @@ export default function Login() {
     const provider = new firebase.auth.OAuthProvider("microsoft.com");
     provider.setCustomParameters({
       prompt: "consent",
-      tenant: "f8cdef31-a31e-4b4a-93e4-5f571e91255a",
+      tenant: "2260919a-7465-43de-8184-eda9b1cf0a25",
     });
     firebase
       .auth()
-      .signInWithPopup(provider)
+      .signInWithRedirect(provider)
       .then((result) => {
-        console.log(result);
+        // Handle successful sign-in
+        const user = result.user;
+        console.log("Signed in user:", user);
+        // Perform any necessary logic or redirection after successful sign-in
       })
       .catch((error) => {
         console.log(error);
