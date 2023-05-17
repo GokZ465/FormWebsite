@@ -18,8 +18,8 @@ export default function Login() {
   const signInWithMicrosoft = () => {
     const provider = new firebase.auth.OAuthProvider("microsoft.com");
     provider.setCustomParameters({
-      prompt: "consent",
-      tenant: "2260919a-7465-43de-8184-eda9b1cf0a25",
+      prompt: "login",
+      tenant: "common",
     });
     firebase
       .auth()
