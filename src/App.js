@@ -55,7 +55,7 @@ function App() {
               <Route path="/loans/:id" element={<Project />}></Route>
             </Routes>
           </div>
-          {user && <OnlineUsers />}
+          {/* {user && <OnlineUsers />} */}
         </BrowserRouter>
       )}
       <ToastContainer />

@@ -327,7 +327,7 @@ function Form() {
         />
       </div>
       <div>
-        <div className="form-control">
+        {/* <div className="form-control">
           <label>
             Data da Pretensão:
             <input
@@ -340,7 +340,7 @@ function Form() {
               onChange={handleMeetingTimeChange}
             />
           </label>
-        </div>
+        </div> */}
       </div>
       <div className="form-control">
         <label htmlFor="fardado">
