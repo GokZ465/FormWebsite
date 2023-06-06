@@ -201,7 +201,7 @@ export default function Form2() {
         </div>
         <div className="form-control">
           <label htmlFor="year" id="label-year">
-            <b>Ano de Escolaridade</b>
+            <b> de Escolaridade</b>
           </label>
           <select
             name="year"
@@ -268,7 +268,6 @@ export default function Form2() {
             <br />
             Do dia:
             <br />
-            Desde as:
           </label>
 
           <input
@@ -283,7 +282,7 @@ export default function Form2() {
         </div>
 
         <div>
-          <label htmlFor="end-time">Até ao dia: Às:</label>
+          <label htmlFor="end-time">Até ao dia: </label>
           <input
             type="datetime-local"
             id="end-time"

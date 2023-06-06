@@ -185,37 +185,6 @@ function Form() {
       style={{ display: isDisabled ? "none" : "block" }}
     >
       {console.log(user)}
-      {form1 === false && form1 !== undefined && (
-        <div
-          style={{
-            backgroundColor: "red",
-            color: "white",
-            padding: "10px",
-            borderRadius: "5px",
-            fontWeight: "bold",
-            textAlign: "center",
-            height: "100px",
-          }}
-        >
-          Your Request is Rejected by Admin
-        </div>
-      )}
-      {console.log(form1, !form1, form1 !== undefined)}
-      {form1 === true && form1 !== undefined && (
-        <div
-          style={{
-            backgroundColor: "green",
-            color: "white",
-            padding: "10px",
-            borderRadius: "5px",
-            fontWeight: "bold",
-            textAlign: "center",
-            height: "100px",
-          }}
-        >
-          Your Request is Accepted by Admin
-        </div>
-      )}
 
       <div className="form-control">
         <h1>Pretensão de Saída</h1>
@@ -314,7 +283,7 @@ function Form() {
       </div>
       <div className="form-control">
         <label htmlFor="endDate">
-          Até ao dia: <br /> Às:
+          Até ao dia: <br />
         </label>
         <input
           type="datetime-local"

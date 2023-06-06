@@ -26,7 +26,7 @@ export default function ProjectList({ projects }) {
 
   const handleReject = (id, uid, form) => {
     deleteDocument(id);
-    console.log(uid);
+    // console.log(uid);
     fireStore
       .collection("users")
       .doc(uid)

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLogin } from "../../hooks/useLogin";
 import firebase from "firebase/app";
 import "firebase/auth";
+import { auth, storage, fireStore } from "../../fireBaeDateBae/config";
 
 import styles from "./Login.module.css";
 
@@ -24,13 +25,23 @@ export default function Login() {
     firebase
       .auth()
       .signInWithRedirect(provider)
-      .then((result) => {
+      .then(async (result) => {
+        console.log("then block!!!!!!!!!!!!!!!!!!!!!!!!!");
         // Handle successful sign-in
+        console.log("Signed in user:", result);
+
         const user = result.user;
         console.log("Signed in user:", user);
         // Perform any necessary logic or redirection after successful sign-in
+        await fireStore.collection("users").doc(result.user.uid).set({
+          online: true,
+          // displayName,
+          // photoURL: imgUrl,
+        });
       })
       .catch((error) => {
+        console.log("then catch block!!!!!!!!!!!!!!!!!!!!!!!!!");
+
         console.log(error);
         // Handle errors
       });
