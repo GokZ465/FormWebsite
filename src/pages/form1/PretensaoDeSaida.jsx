@@ -16,6 +16,8 @@ function Form() {
   const [companhiaDeAlunos, setCompanhiaDeAlunos] = useState("3");
   const [numero, setNumero] = useState("");
   const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+
   const [anoDeEscolaridade, setAnoDeEscolaridade] = useState("10");
   const [turma, setTurma] = useState("A");
   const [desde, setDesde] = useState("");
@@ -119,6 +121,10 @@ function Form() {
   const handleCommentChange = (event) => {
     setComment(event.target.value);
   };
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+
   const handleRecommedChange = (event) => {
     setRecommed(event.target.value);
   };
@@ -148,6 +154,7 @@ function Form() {
       companhiaDeAlunos,
       numero,
       nome,
+      email,
       anoDeEscolaridade,
       turma,
       desde,
@@ -232,6 +239,20 @@ function Form() {
           placeholder="Introduz o teu nome"
           value={nome}
           onChange={handleNomeChange}
+        />
+      </div>
+      <div className="form-control">
+        <label htmlFor="email" id="label-email">
+          Email
+        </label>
+        {/* Input Type Email */}
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Introduz o teu email"
+          value={email}
+          onChange={handleEmailChange}
         />
       </div>
       <div className="form-control">

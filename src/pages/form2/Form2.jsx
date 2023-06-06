@@ -18,6 +18,8 @@ export default function Form2() {
   const [role, setRole] = useState("");
   const [number, setNumber] = useState("");
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+
   const [year, setYear] = useState("");
   const [classroom, setClassroom] = useState("");
   const [roomNumber, setRoomNumber] = useState("");
@@ -96,6 +98,7 @@ export default function Form2() {
       endDate,
       quarto,
       createdBy,
+      email,
     });
     addDocument({
       role,
@@ -108,6 +111,8 @@ export default function Form2() {
       startDate,
       endDate,
       quarto,
+      email,
+
       createdBy,
       form: "PretensaoDePosseOuUso",
     });
@@ -130,37 +135,20 @@ export default function Form2() {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        {form2 === false && form2 !== undefined && (
-          <div
-            style={{
-              backgroundColor: "red",
-              color: "white",
-              padding: "10px",
-              borderRadius: "5px",
-              fontWeight: "bold",
-              textAlign: "center",
-              height: "100px",
-            }}
-          >
-            Your Request is Rejected by Admin
-          </div>
-        )}
-        {form2 === true && form2 !== undefined && (
-          <div
-            style={{
-              backgroundColor: "green",
-              color: "white",
-              padding: "10px",
-              borderRadius: "5px",
-              fontWeight: "bold",
-              textAlign: "center",
-              height: "100px",
-            }}
-          >
-            Your Request is Accepted by Admin
-          </div>
-        )}
         <h1>Pretensão de Posse ou Uso</h1>
+        <div className="form-control">
+          <label htmlFor="email" id="label-email">
+            <b>Email</b>
+          </label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
         <div className="form-control">
           <label htmlFor="role" id="label-role">
             <b>Companhia de Alunos</b>
