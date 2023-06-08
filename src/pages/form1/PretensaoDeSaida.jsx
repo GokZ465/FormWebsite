@@ -17,7 +17,6 @@ function Form() {
   const [numero, setNumero] = useState("");
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
-
   const [anoDeEscolaridade, setAnoDeEscolaridade] = useState("10");
   const [turma, setTurma] = useState("A");
   const [desde, setDesde] = useState("");
@@ -25,18 +24,14 @@ function Form() {
   const [role, setRole] = useState("");
   const [form1, setForm1] = useState();
   const [form2, setForm2] = useState();
-  const [startDate, setStartDate] = useState(
-    new Date().toISOString().substring(0, 10)
-  );
-  const [endDate, setEndDate] = useState(
-    new Date().toISOString().substring(0, 10)
-  );
-
+  const [startDate, setStartDate] = useState(new Date().toISOString().substring(0, 10));
+  const [endDate, setEndDate] = useState(new Date().toISOString().substring(0, 10));
   const [recommed, setRecommed] = useState("");
   const [meetingTime, setMeetingTime] = useState("2022-12-13T08:00");
   const { addDocument } = useFirestore("transactions");
   const [isDisabled, setIsDisabled] = useState(false);
   const [comment, setComment] = useState("");
+  
 
   const handleCompanhiaDeAlunosChange = (event) => {
     setCompanhiaDeAlunos(event.target.value);
@@ -195,6 +190,20 @@ function Form() {
 
       <div className="form-control">
         <h1>Pretensão de Saída</h1>
+        <div className="form-control">
+          <label htmlFor="email" id="label-email">
+            Email
+          </label>
+          {/* Input Type Email */}
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Introduz o teu email"
+            value={email}
+            onChange={handleEmailChange}
+          />
+        </div>
         <label htmlFor="companhiaDeAlunos" id="label-companhiaDeAlunos">
           Companhia de Alunos
         </label>
@@ -241,20 +250,7 @@ function Form() {
           onChange={handleNomeChange}
         />
       </div>
-      <div className="form-control">
-        <label htmlFor="email" id="label-email">
-          Email
-        </label>
-        {/* Input Type Email */}
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Introduz o teu email"
-          value={email}
-          onChange={handleEmailChange}
-        />
-      </div>
+
       <div className="form-control">
         <label htmlFor="anoDeEscolaridade" id="label-anoDeEscolaridade">
           Ano de Escolaridade

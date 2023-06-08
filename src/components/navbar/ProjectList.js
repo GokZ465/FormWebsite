@@ -143,7 +143,7 @@ export default function ProjectList({ projects }) {
       {projects.length === 0 && <p>No requests yet</p>}
       {projects.map((project) => (
         <div className="project-card" key={project.numero}>
-          {/* {console.log(project)} */}
+          {console.log(project)}
           <p to={`/`}>
             <h4>{project.nome}</h4>
             <h5>Requested by {project.createdBy.displayName}</h5>
@@ -157,12 +157,14 @@ export default function ProjectList({ projects }) {
             </p>
             <h5>recommed {project.recommed}</h5>
             <p>companhiaDeAlunos {project.companhiaDeAlunos}</p>
-            <p>
-              Meeting Time:{" "}
-              {new Date(project.meetingTime).toLocaleString("en-US", options)}
-            </p>
+            {project.meetingTime && (
+              <p>
+                Meeting Time:{" "}
+                {new Date(project.meetingTime).toLocaleString("en-US", options)}
+              </p>
+            )}
 
-            <p>Turma : {project.Turma}</p>
+            <p>Turma : {project.turma}</p>
             <div className="assigned-to">
               <p>Motivo : {project.comment}</p>
             </div>

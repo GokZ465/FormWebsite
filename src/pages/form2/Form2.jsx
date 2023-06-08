@@ -21,7 +21,7 @@ export default function Form2() {
   const [email, setEmail] = useState("");
 
   const [year, setYear] = useState("");
-  const [classroom, setClassroom] = useState("");
+  const [classroom, setClassroom] = useState("A");
   const [roomNumber, setRoomNumber] = useState("");
   const [comment, setComment] = useState("");
   const [startDate, setStartDate] = useState(
@@ -102,10 +102,10 @@ export default function Form2() {
     });
     addDocument({
       role,
-      number,
-      name,
-      year,
-      classroom,
+      numero: number,
+      nome: name,
+      anoDeEscolaridade: year,
+      turma: classroom,
       roomNumber,
       comment,
       startDate,
